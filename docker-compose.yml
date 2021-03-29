@@ -1,0 +1,15 @@
+version: "3"
+services:
+  ftp:
+    container_name: pythonftp
+    restart: always
+    build: ./
+    image: pythonftp
+    env_file:
+     - ./.env
+    volumes:
+      - ${localfilestopush}:/app/ftp/ftp_push
+      - ${localfilespushed}:/app/ftp/ftp_pushed
+      - ${logsfilespath}:/app/ftp/logs
+    ports:
+     - '21:21'
