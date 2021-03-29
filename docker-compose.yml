@@ -1,15 +1,15 @@
 version: "3"
 services:
   ftp:
-    container_name: pythonftp
+    container_name: ${ftpservicename}
     restart: always
     build: ./
-    image: pythonftp
+    image: ${ftpservicename}
     env_file:
      - ./.env
     volumes:
       - ${localfilestopush}:/app/ftp/ftp_push
       - ${localfilespushed}:/app/ftp/ftp_pushed
-      - ${logsfilespath}:/app/ftp/logs
+      - ${logfilespath}:/app/ftp/logs
     ports:
      - '21:21'

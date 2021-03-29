@@ -19,6 +19,7 @@ class ftpinfo:
         result['password'] = config('ftppassword')
         result['ftp_path'] = config('ftppath')
         result['pulled'] = config('dockerftpfiles')
+        result['ftp_move'] = config('ftppathafterpulled')
         return result
 
     def ftp_logs(self):
@@ -43,5 +44,5 @@ class ftpinfo:
         result['privatekey'] = config('sftpprivatekey')
         result['sftp_path'] = config('ftppath')
         result['sftp_pulled'] = config('dockerftpfiles')
-        result['sftp_move'] = config('sftpmoveafterpulled')
+        result['sftp_move'] = config('ftppathafterpulled')
         return result

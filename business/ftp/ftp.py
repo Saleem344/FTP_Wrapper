@@ -58,16 +58,21 @@ class FTP_Operations:
                     connection.retrbinary("RETR %s" %item, write_file.write)
                     self.logger.info(item+' file successfully pulled from ' +
                                 credentials['ftp_path'])
-                    connection.delete(item)
+                    connection.rename(item,credentials['ftp_move']+"/"+item)
                     write_file.close()
                 else:
                     write_file = open(credentials['pulled']+item, 'wb')
                     connection.retrbinary("RETR %s" %item, write_file.write)
                     self.logger.info(item+' file successfully pulled from ' +
                                 credentials['ftp_path'])
-                    connection.delete(item)
+                    connection.rename(item,credentials['ftp_move']+"/"+item)
                     write_file.close()
             # close conn
             connection.quit()
         except:
             self.logger.error(sys.exc_info())
+
+
+
+
+FTP_Operations().data_pull()
