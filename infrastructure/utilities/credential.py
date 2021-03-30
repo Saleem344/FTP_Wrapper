@@ -23,7 +23,7 @@ class ftpinfo:
         return result
 
     def ftp_logs(self):
-        return config('logsfilespath')
+        return config('logfilespath')
 
     def sftp_Push(self):
         result = {}

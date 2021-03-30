@@ -71,8 +71,3 @@ class FTP_Operations:
             connection.quit()
         except:
             self.logger.error(sys.exc_info())
-
-
-
-
-FTP_Operations().data_pull()

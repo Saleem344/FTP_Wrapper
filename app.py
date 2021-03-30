@@ -8,6 +8,8 @@ import time
 from infrastructure.utilities.app_logs import logs
 from infrastructure.utilities.delete import deletefiles
 from pathlib import Path
+import schedule
+from decouple import config
 
 
 #append system path
@@ -19,7 +21,7 @@ dotenv.set_key(dotenv_file, "systempath", os.environ["systempath"])
 #check directory 
 Path(os.environ["localfilestopush"]).mkdir(parents=True, exist_ok= True)
 Path(os.environ["localfilespushed"]).mkdir(parents=True, exist_ok= True)
-Path(os.environ["logsfilespath"]).mkdir(parents=True, exist_ok= True)
+Path(os.environ["logfilespath"]).mkdir(parents=True, exist_ok= True)
 
 
 
@@ -64,3 +66,18 @@ class mainclass:
         except:
             self.logger.error(sys.exc_info()[1])
 
+# #schedule            
+# schedule.every().day.at("10:00").do(mainclass().ftp_delete)
+# schedule.every().day.at("10:30").do(deletefiles().delete_logs)
+
+# logger = logs().file_logs('ftp')
+# while True:
+#     try:
+#         if config("ftpoperation") == "push":
+#             mainclass().ftp_push()
+#         elif config("ftpoperation") == "pull":
+#             mainclass().ftp_pull()
+#         schedule.run_pending()
+#         time.sleep(60)
+#     except:
+#         logger.error(sys.exc_info())
